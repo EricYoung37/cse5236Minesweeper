@@ -1,0 +1,15 @@
+<resources>
+    <!-- Main menu elements -->
+    <string name="app_name">Minesweeper</string>
+    <string name="welcome_to_minesweeper">Welcome to Minesweeper!</string>
+    <string name="start_game">Start Game</string>
+
+    <!-- Digit panel elements -->
+    <string name="score">Score</string>
+    <string name="num_of_bomb">Bomb</string>
+
+    <!-- Game field/grid elements -->
+    <string name="flag">🚩</string>
+    <string name="bomb">💣</string>
+    <string name="default_count">000</string>
+</resources>
