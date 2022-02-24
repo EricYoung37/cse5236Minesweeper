@@ -62,6 +62,14 @@ public class MineGrid {
         return cells.get(x + (y*size));
     }
 
+    public void revealAllBombs(){
+        for(Cell cell: cells){
+            if(cell.getValue() == Cell.BOMB){
+                cell.setRevealed(true);
+            }
+        }
+    }
+
     /* Retrieve the adjacent cells of a cell */
     public List<Cell> adjacentCells(int x, int y) {
         List<Cell> adjacentCells = new ArrayList<>();

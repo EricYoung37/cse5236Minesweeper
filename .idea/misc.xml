@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/16263/StudioProjects/cse5236Minesweeper/app/src/main/res/layout/activity_main.xml" value="0.55" />
+        <entry key="..\:/Users/16263/StudioProjects/cse5236Minesweeper/app/src/main/res/layout/item_cell.xml" value="0.55" />
         <entry key="..\:/cse5236workspace/Minesweeper/app/src/main/res/layout/activity_main.xml" value="0.13020833333333334" />
         <entry key="..\:/cse5236workspace/Minesweeper/app/src/main/res/layout/activity_main_menu.xml" value="0.144" />
       </map>
