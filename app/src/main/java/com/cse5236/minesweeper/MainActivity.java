@@ -3,6 +3,8 @@ package com.cse5236.minesweeper;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.util.Log;
 import android.widget.TextView;
 
 import android.os.Bundle;
@@ -33,6 +35,8 @@ public class MainActivity extends AppCompatActivity implements OnCellClickListen
 
         mineGridRecyclerAdapter = new MineGridRecyclerAdapter(game.getMineGrid().getCells(),this);
         gridRecyclerView.setAdapter(mineGridRecyclerAdapter);
+
+        Log.d("MainActivity", "onCreate called!!!");
     }
 
     @Override
@@ -55,5 +59,40 @@ public class MainActivity extends AppCompatActivity implements OnCellClickListen
 
         }
         mineGridRecyclerAdapter.setCells(game.getMineGrid().getCells());
+    }
+
+    @Override
+    protected void onDestroy()
+    {
+        super.onDestroy();
+        Log.d("MainActivity", "onDestroy called!!!");
+    }
+
+    @Override
+    protected void onStart()
+    {
+        super.onStart();
+        Log.d("MainActivity", "onStart called!!!");
+    }
+
+    @Override
+    protected void onResume()
+    {
+        super.onResume();
+        Log.d("MainActivity", "onResume called!!!");
+    }
+
+    @Override
+    protected void onStop()
+    {
+        super.onStop();
+        Log.d("MainActivity", "onStop called!!!");
+    }
+
+    @Override
+    protected void onPause()
+    {
+        super.onPause();
+        Log.d("MainActivity", "onPause called!!!");
     }
 }
