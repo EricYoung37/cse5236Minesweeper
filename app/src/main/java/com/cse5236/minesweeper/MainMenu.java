@@ -10,24 +10,37 @@ import android.widget.Button;
 
 public class MainMenu extends AppCompatActivity {
 
-    private Button button;
+    private Button startGameBtn, leaderBoardBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
 
-        button = (Button) findViewById(R.id.start_game_button);
-        button.setOnClickListener(new View.OnClickListener() {
+        startGameBtn = (Button) findViewById(R.id.start_game_button);
+        startGameBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startMainActivity();
+            }
+        });
+
+        leaderBoardBtn = (Button) findViewById(R.id.leader_board_button);
+        leaderBoardBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openLeaderBoard();
             }
         });
     }
 
     public void startMainActivity() {
         Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
+    public void openLeaderBoard() {
+        Intent intent = new Intent(this, LeaderBoard.class);
         startActivity(intent);
     }
 }

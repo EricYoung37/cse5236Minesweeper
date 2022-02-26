@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements OnCellClickListen
             scoreBoard.setText(String.format("%s","Score: " + score));
             count = 0;
         }
-        game.handleCellclick(cell);
+        game.handleCellClick(cell);
 
         if(game.gameOver()){
             Toast.makeText(getApplicationContext(),"Game Over",Toast.LENGTH_SHORT).show();

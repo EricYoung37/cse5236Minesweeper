@@ -20,7 +20,7 @@ public class MinesweeperGame {
 
     }
 
-    public void handleCellclick(Cell cell){
+    public void handleCellClick(Cell cell){
         if(clearMode){
             clear(cell);
         }
