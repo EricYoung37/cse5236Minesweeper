@@ -1,5 +1,6 @@
 package com.cse5236.minesweeper;
 
+//1
 public class Cell {
     public static final int BOMB = -1;
     public static final int BLANK = 0;
