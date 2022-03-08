@@ -10,11 +10,20 @@ import android.widget.TextView;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class MainActivity extends AppCompatActivity implements OnCellClickListener {
     RecyclerView gridRecyclerView;
     MineGridRecyclerAdapter mineGridRecyclerAdapter;
     MinesweeperGame game;
     TextView scoreBoard;
+    TextView timerText;
+    Timer timer;
+    TimerTask timerTask;
+    Double time = 0.0;
     int score;
     int count;
 
@@ -31,12 +40,13 @@ public class MainActivity extends AppCompatActivity implements OnCellClickListen
         score = 0;
         count = 0;
         scoreBoard = findViewById(R.id.score);
-
-
+        timerText = (TextView)findViewById(R.id.timer);
+        timer = new Timer();
         mineGridRecyclerAdapter = new MineGridRecyclerAdapter(game.getMineGrid().getCells(),this);
         gridRecyclerView.setAdapter(mineGridRecyclerAdapter);
 
         Log.d("MainActivity", "onCreate called!!!");
+        startTimer();
     }
 
     @Override
@@ -52,13 +62,41 @@ public class MainActivity extends AppCompatActivity implements OnCellClickListen
         if(game.gameOver()){
             Toast.makeText(getApplicationContext(),"Game Over",Toast.LENGTH_SHORT).show();
             game.getMineGrid().revealAllBombs();
+            timerTask.cancel();
         }
         if(game.isGameWon()){
             Toast.makeText(getApplicationContext(),"Game Won",Toast.LENGTH_SHORT).show();
             game.getMineGrid().revealAllBombs();
+            timerTask.cancel();
 
         }
         mineGridRecyclerAdapter.setCells(game.getMineGrid().getCells());
+    }
+
+    public void startTimer(){
+        timerTask = new TimerTask() {
+            @Override
+            public void run() {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        time++;
+                        timerText.setText(getTimerText());
+                    }
+                });
+
+            }
+        };
+        timer.scheduleAtFixedRate(timerTask,0,1000);
+
+    }
+
+    private String getTimerText() {
+        int round = (int) Math.round(time);
+        int seconds = ((round % 86400) % 3600) % 60;
+        int minutes =   ((round % 86400) % 3600) / 60;
+
+        return String.format("%02d", minutes) + " : " + String.format("%02d", seconds);
     }
 
     @Override

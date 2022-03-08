@@ -6,7 +6,7 @@
 
     <!-- Digit panel elements -->
     <string name="score">Score</string>
-    <string name="num_of_bomb">Bomb</string>
+    <string name="timer">Time</string>
 
     <!-- Game field/grid elements -->
     <string name="flag">🚩</string>
