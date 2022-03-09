@@ -5,6 +5,9 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import android.os.Bundle;
@@ -16,14 +19,20 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity implements OnCellClickListener {
+    //recycler
     RecyclerView gridRecyclerView;
     MineGridRecyclerAdapter mineGridRecyclerAdapter;
+    //game
     MinesweeperGame game;
+    //UI
     TextView scoreBoard;
     TextView timerText;
+    EditText playerName;
     Timer timer;
     TimerTask timerTask;
     Double time = 0.0;
+    Button submitBtn;
+
     int score;
     int count;
 
@@ -35,18 +44,35 @@ public class MainActivity extends AppCompatActivity implements OnCellClickListen
 
         gridRecyclerView = findViewById(R.id.activity_main_grid);
         gridRecyclerView.setLayoutManager(new GridLayoutManager(this, 10)); /* spanCount: number of column */
-
         game = new MinesweeperGame(10, 10);
         score = 0;
         count = 0;
+
         scoreBoard = findViewById(R.id.score);
-        timerText = (TextView)findViewById(R.id.timer);
+        timerText = findViewById(R.id.timer);
         timer = new Timer();
+
+        DAOPlayer dao = new DAOPlayer();
+        playerName = findViewById(R.id.name);
+
         mineGridRecyclerAdapter = new MineGridRecyclerAdapter(game.getMineGrid().getCells(),this);
         gridRecyclerView.setAdapter(mineGridRecyclerAdapter);
 
         Log.d("MainActivity", "onCreate called!!!");
         startTimer();
+
+        submitBtn = findViewById(R.id.submit);
+        submitBtn.setOnClickListener(v-> {
+
+            Player p = new Player(playerName.getText().toString(), timerText.getText().toString());
+            dao.add(p).addOnSuccessListener(suc ->
+            {
+                Toast.makeText(this, "Data inserted",Toast.LENGTH_SHORT).show();
+            }).addOnFailureListener(er-> {
+                Toast.makeText(this,""+er.getMessage(),Toast.LENGTH_SHORT).show();
+            });
+
+        });
     }
 
     @Override
@@ -54,7 +80,7 @@ public class MainActivity extends AppCompatActivity implements OnCellClickListen
         count++;
         if(count == 3){
             score++;
-            scoreBoard.setText(String.format("%s","Score: " + score));
+            scoreBoard.setText(String.format("%s","        " + score));
             count = 0;
         }
         game.handleCellClick(cell);
