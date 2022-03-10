@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
+import java.util.HashMap;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -63,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements OnCellClickListen
 
         submitBtn = findViewById(R.id.submit);
         submitBtn.setOnClickListener(v-> {
-
+//
             Player p = new Player(playerName.getText().toString(), timerText.getText().toString());
             dao.add(p).addOnSuccessListener(suc ->
             {
@@ -71,10 +72,20 @@ public class MainActivity extends AppCompatActivity implements OnCellClickListen
             }).addOnFailureListener(er-> {
                 Toast.makeText(this,""+er.getMessage(),Toast.LENGTH_SHORT).show();
             });
-
+//            HashMap<String, Object> hashMap = new HashMap<>();
+//            hashMap.put("name", playerName.getText().toString());
+//            hashMap.put("time", timerText.getText().toString());
+//
+//            dao.update(p).addOnSuccessListener(suc ->
+//            {
+//                Toast.makeText(this, "Data inserted",Toast.LENGTH_SHORT).show();
+//            }).addOnFailureListener(er-> {
+//                Toast.makeText(this,""+er.getMessage(),Toast.LENGTH_SHORT).show();
+//            });
+//
         });
     }
-
+    //hi
     @Override
     public void cellClick(Cell cell) {
         count++;
