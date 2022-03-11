@@ -13,4 +13,10 @@
         android:text="Leader Score"
         android:textSize="30sp" />
 
+    <View
+        android:layout_marginTop="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="2dp"
+        android:background="#000000" />
+
 </FrameLayout>

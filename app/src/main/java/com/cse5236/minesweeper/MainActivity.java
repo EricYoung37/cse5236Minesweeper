@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity implements OnCellClickListen
 //
         });
     }
-    //hi
+
     @Override
     public void cellClick(Cell cell) {
         count++;
