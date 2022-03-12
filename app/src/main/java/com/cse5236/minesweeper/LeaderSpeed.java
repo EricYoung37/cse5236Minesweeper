@@ -47,7 +47,7 @@ public class LeaderSpeed extends Fragment {
     }
 
     private void loadDateFromFirebase() {
-        daoPlayer.get().addValueEventListener(new ValueEventListener() {
+        daoPlayer.getAll().addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 ArrayList<Player> players = new ArrayList<Player>();

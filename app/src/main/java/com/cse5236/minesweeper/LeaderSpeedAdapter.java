@@ -38,6 +38,8 @@ public class LeaderSpeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         return list.size();
     }
 
+
+    /* Nested class player ViewHolder */
     public class PlayerVH extends RecyclerView.ViewHolder {
         public TextView txt_name, txt_time;
 

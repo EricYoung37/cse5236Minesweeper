@@ -64,25 +64,8 @@ public class MainActivity extends AppCompatActivity implements OnCellClickListen
 
         submitBtn = findViewById(R.id.submit);
         submitBtn.setOnClickListener(v-> {
-//
             Player p = new Player(playerName.getText().toString(), timerText.getText().toString());
-            dao.add(p).addOnSuccessListener(suc ->
-            {
-                Toast.makeText(this, "Data inserted",Toast.LENGTH_SHORT).show();
-            }).addOnFailureListener(er-> {
-                Toast.makeText(this,""+er.getMessage(),Toast.LENGTH_SHORT).show();
-            });
-//            HashMap<String, Object> hashMap = new HashMap<>();
-//            hashMap.put("name", playerName.getText().toString());
-//            hashMap.put("time", timerText.getText().toString());
-//
-//            dao.update(p).addOnSuccessListener(suc ->
-//            {
-//                Toast.makeText(this, "Data inserted",Toast.LENGTH_SHORT).show();
-//            }).addOnFailureListener(er-> {
-//                Toast.makeText(this,""+er.getMessage(),Toast.LENGTH_SHORT).show();
-//            });
-//
+            dao.submit(p);
         });
     }
 
