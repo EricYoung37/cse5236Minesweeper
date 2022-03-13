@@ -37,7 +37,7 @@ public class LeaderSpeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         PlayerViewHolder playerViewHolder = (PlayerViewHolder) holder;
         playerViewHolder.bind(list, position);
-        playerViewHolder.setIsRecyclable(false);
+        playerViewHolder.setIsRecyclable(true);
     }
 
     @Override
