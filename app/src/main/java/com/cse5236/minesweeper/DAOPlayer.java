@@ -1,12 +1,7 @@
 package com.cse5236.minesweeper;
 
-import android.content.Context;
-import android.util.Log;
-import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -53,9 +48,27 @@ public class DAOPlayer {
         });
     }
 
+    public void delete(Player p) {
 
-    public Task<Void> delete(String key){
-        return tableRef.child(key).removeValue();
+        /* orderByChild("name") only means you get a copy of data ordered by name but not ordering the original data */
+        tableRef.orderByChild("name").equalTo(p.getName()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                if (snapshot.exists()) {
+                    /* If name exists, update */
+                    for (DataSnapshot child : snapshot.getChildren()) {
+                        String key = child.getKey();
+                        tableRef.child(key).removeValue();
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
     /* Read all */

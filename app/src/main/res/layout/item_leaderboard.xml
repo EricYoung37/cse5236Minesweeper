@@ -7,8 +7,9 @@
     android:layout_gravity="center">
 
     <TextView
-        android:layout_width="150dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginRight="35dp"
         android:text="Text"
         android:textSize="24sp"
         android:layout_marginBottom="5dp"
@@ -18,10 +19,18 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="35dp"
+        android:layout_marginRight="15dp"
         android:text="Text"
         android:textSize="24sp"
         android:layout_marginBottom="5dp"
         android:layout_marginTop="5dp"
         android:id="@+id/txt_time" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="delete"
+        android:id="@+id/delete_btn" />
 
 </LinearLayout>

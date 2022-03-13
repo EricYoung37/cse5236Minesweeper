@@ -55,7 +55,6 @@ public class MineGridRecyclerAdapter extends RecyclerView.Adapter<MineGridRecycl
 
         public MineTileViewHolder(@NonNull View itemView) {
             super(itemView);
-
             valueTextView = itemView.findViewById(R.id.item_cell_value);
         }
 

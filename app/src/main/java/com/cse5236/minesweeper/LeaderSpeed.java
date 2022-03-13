@@ -33,13 +33,13 @@ public class LeaderSpeed extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_leader_speed, container, false);
 
-
         recyclerView = view.findViewById(R.id.leaderboard_list);
-        leaderSpeedAdapter = new LeaderSpeedAdapter();
+        leaderSpeedAdapter = new LeaderSpeedAdapter(new ArrayList<Player>());
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(leaderSpeedAdapter);
         daoPlayer = new DAOPlayer();
+
         loadDateFromFirebase();
 
         Log.d("LeaderSpeedFrag", "onCreateView called!!!");
@@ -66,31 +66,31 @@ public class LeaderSpeed extends Fragment {
         });
     }
 
-    @Override
-    public void onDestroy()
-    {
-        super.onDestroy();
-        Log.d("LeaderSpeedFrag", "onDestroy called!!!");
-    }
-
-    @Override
-    public void onResume()
-    {
-        super.onResume();
-        Log.d("LeaderSpeedFrag", "onResume called!!!");
-    }
-
-    @Override
-    public void onStop()
-    {
-        super.onStop();
-        Log.d("LeaderSpeedFrag", "onStop called!!!");
-    }
-
-    @Override
-    public void onPause()
-    {
-        super.onPause();
-        Log.d("LeaderSpeedFrag", "onPause called!!!");
-    }
+//    @Override
+//    public void onDestroy()
+//    {
+//        super.onDestroy();
+//        Log.d("LeaderSpeedFrag", "onDestroy called!!!");
+//    }
+//
+//    @Override
+//    public void onResume()
+//    {
+//        super.onResume();
+//        Log.d("LeaderSpeedFrag", "onResume called!!!");
+//    }
+//
+//    @Override
+//    public void onStop()
+//    {
+//        super.onStop();
+//        Log.d("LeaderSpeedFrag", "onStop called!!!");
+//    }
+//
+//    @Override
+//    public void onPause()
+//    {
+//        super.onPause();
+//        Log.d("LeaderSpeedFrag", "onPause called!!!");
+//    }
 }
