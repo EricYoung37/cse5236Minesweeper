@@ -10,19 +10,20 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.List;
 
 public class LeaderSpeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    private Context context;
+    Context mContext;
     ArrayList<Player> list;
 
-    public LeaderSpeedAdapter(ArrayList<Player> plist){
-        this.list = plist;
+    public LeaderSpeedAdapter(Context context, ArrayList<Player> plist){
+        list = plist;
+        mContext = context;
     }
 
-    public void setItems(ArrayList<Player> plist){
-        this.list = plist;
+    public void setItems(ArrayList<Player> playerList) {
+        list = playerList;
         notifyDataSetChanged();
     }
 
