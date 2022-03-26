@@ -30,6 +30,8 @@ public class MainActivity extends AppCompatActivity implements OnCellClickListen
     Double time = 0.0;
     Button submitBtn;
 
+    Difficulty difficulty;
+
     int score;
     int count;
 
@@ -38,10 +40,13 @@ public class MainActivity extends AppCompatActivity implements OnCellClickListen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        difficulty = Difficulty.getInstance();
 
         gridRecyclerView = findViewById(R.id.activity_main_grid);
-        gridRecyclerView.setLayoutManager(new GridLayoutManager(this, 10)); /* spanCount: number of column */
-        game = new MinesweeperGame(10, 10);
+//        gridRecyclerView.setLayoutManager(new GridLayoutManager(this, 10)); // spanCount: number of column/row
+//        game = new MinesweeperGame(10, 10);
+        gridRecyclerView.setLayoutManager(new GridLayoutManager(this, difficulty.getSize()));
+        game = new MinesweeperGame(difficulty.getSize(), difficulty.getBombNum());
         score = 0;
         count = 0;
 
@@ -55,7 +60,7 @@ public class MainActivity extends AppCompatActivity implements OnCellClickListen
         mineGridRecyclerAdapter = new MineGridRecyclerAdapter(game.getMineGrid().getCells(),this);
         gridRecyclerView.setAdapter(mineGridRecyclerAdapter);
 
-        Log.d("MainActivity", "onCreate called!!!");
+//        Log.d("MainActivity", "onCreate called!!!");
         startTimer();
 
         submitBtn = findViewById(R.id.submit);
@@ -115,38 +120,38 @@ public class MainActivity extends AppCompatActivity implements OnCellClickListen
         return String.format("%02d", minutes) + " : " + String.format("%02d", seconds);
     }
 
-    @Override
-    protected void onDestroy()
-    {
-        super.onDestroy();
-        Log.d("MainActivity", "onDestroy called!!!");
-    }
-
-    @Override
-    protected void onStart()
-    {
-        super.onStart();
-        Log.d("MainActivity", "onStart called!!!");
-    }
-
-    @Override
-    protected void onResume()
-    {
-        super.onResume();
-        Log.d("MainActivity", "onResume called!!!");
-    }
-
-    @Override
-    protected void onStop()
-    {
-        super.onStop();
-        Log.d("MainActivity", "onStop called!!!");
-    }
-
-    @Override
-    protected void onPause()
-    {
-        super.onPause();
-        Log.d("MainActivity", "onPause called!!!");
-    }
+//    @Override
+//    protected void onDestroy()
+//    {
+//        super.onDestroy();
+//        Log.d("MainActivity", "onDestroy called!!!");
+//    }
+//
+//    @Override
+//    protected void onStart()
+//    {
+//        super.onStart();
+//        Log.d("MainActivity", "onStart called!!!");
+//    }
+//
+//    @Override
+//    protected void onResume()
+//    {
+//        super.onResume();
+//        Log.d("MainActivity", "onResume called!!!");
+//    }
+//
+//    @Override
+//    protected void onStop()
+//    {
+//        super.onStop();
+//        Log.d("MainActivity", "onStop called!!!");
+//    }
+//
+//    @Override
+//    protected void onPause()
+//    {
+//        super.onPause();
+//        Log.d("MainActivity", "onPause called!!!");
+//    }
 }
