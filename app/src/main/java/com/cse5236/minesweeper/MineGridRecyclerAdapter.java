@@ -85,6 +85,7 @@ public class MineGridRecyclerAdapter extends RecyclerView.Adapter<MineGridRecycl
                     } else if (cell.getValue() == 3) {
                         valueTextView.setTextColor(Color.RED);
                     }
+                    itemView.setBackgroundColor(Color.parseColor("#d3d3d3"));
                 }
             }
 
