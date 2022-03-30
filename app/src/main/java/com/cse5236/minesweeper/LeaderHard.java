@@ -2,7 +2,6 @@ package com.cse5236.minesweeper;
 
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -14,13 +13,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.ValueEventListener;
-
 import java.util.ArrayList;
 
-public class LeaderSpeed extends Fragment {
+public class LeaderHard extends Fragment {
 
     View view;
     RecyclerView recyclerView;
@@ -32,7 +27,7 @@ public class LeaderSpeed extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_leader_speed, container, false);
+        view = inflater.inflate(R.layout.fragment_leader_hard, container, false);
 
         /* Create ViewModel */
         // Version with VM & Repo
