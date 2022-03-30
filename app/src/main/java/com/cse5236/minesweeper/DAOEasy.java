@@ -11,19 +11,19 @@ import com.google.firebase.database.ValueEventListener;
 
 public class DAOEasy {
 
-    private DatabaseReference tableRef; // Reference for the entire 'Player' table
+    private DatabaseReference easyTable; // Reference for the 'Easy' table
 
     public DAOEasy()
     {
         FirebaseDatabase db = FirebaseDatabase.getInstance();
-        tableRef = db.getReference("LeaderBoard/Easy");
+        easyTable = db.getReference("LeaderBoard/Easy");
     }
 
     /* Create or Update a record depending on the existence of the player name */
     public void submit(Player p) {
 
         /* orderByChild("name") only means you get a copy of data ordered by name but not ordering the original data */
-        tableRef.orderByChild("name").equalTo(p.getName()).addListenerForSingleValueEvent(new ValueEventListener() {
+        easyTable.orderByChild("name").equalTo(p.getName()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
@@ -31,11 +31,11 @@ public class DAOEasy {
                     /* If name exists, update */
                     for (DataSnapshot child : snapshot.getChildren()) {
                         String key = child.getKey();
-                        tableRef.child(key).setValue(p);
+                        easyTable.child(key).setValue(p);
                     }
                 } else {
                     /* If name does not exist, create a new node */
-                    tableRef.push().setValue(p);
+                    easyTable.push().setValue(p);
                 }
             }
 
@@ -50,7 +50,7 @@ public class DAOEasy {
     public void delete(Player p) {
 
         /* orderByChild("name") only means you get a copy of data ordered by name but not ordering the original data */
-        tableRef.orderByChild("name").equalTo(p.getName()).addListenerForSingleValueEvent(new ValueEventListener() {
+        easyTable.orderByChild("name").equalTo(p.getName()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
@@ -58,7 +58,7 @@ public class DAOEasy {
                     /* If name exists, update */
                     for (DataSnapshot child : snapshot.getChildren()) {
                         String key = child.getKey();
-                        tableRef.child(key).removeValue();
+                        easyTable.child(key).removeValue();
                     }
                 }
             }
@@ -72,7 +72,7 @@ public class DAOEasy {
 
     /* Read all */
     public Query getAll(){
-        return tableRef.orderByChild("time");
+        return easyTable.orderByChild("time");
     }
 
 }
