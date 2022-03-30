@@ -13,6 +13,8 @@
         <entry key="..\:/cse5236workspace/Minesweeper/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/cse5236workspace/Minesweeper/app/src/main/res/layout/activity_main_menu.xml" value="0.144" />
         <entry key="..\:/cse5236workspace/Minesweeper/app/src/main/res/layout/activity_settings.xml" value="0.25416666666666665" />
+        <entry key="..\:/cse5236workspace/Minesweeper/app/src/main/res/layout/fragment_leader_easy.xml" value="0.19583333333333333" />
+        <entry key="..\:/cse5236workspace/Minesweeper/app/src/main/res/layout/fragment_leader_hard.xml" value="0.19583333333333333" />
         <entry key="..\:/cse5236workspace/Minesweeper/app/src/main/res/layout/fragment_leader_score.xml" value="0.25416666666666665" />
         <entry key="..\:/cse5236workspace/Minesweeper/app/src/main/res/layout/fragment_leader_speed.xml" value="0.24010416666666667" />
         <entry key="..\:/cse5236workspace/Minesweeper/app/src/main/res/layout/item_leaderboard.xml" value="0.23541666666666666" />

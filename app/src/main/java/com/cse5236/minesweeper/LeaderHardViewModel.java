@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel;
 
 import java.util.ArrayList;
 
-public class LeaderSpeedViewModel extends ViewModel {
+public class LeaderHardViewModel extends ViewModel {
 
     private MutableLiveData<ArrayList<Player>> players;
     private PlayerRepository playerRepo;

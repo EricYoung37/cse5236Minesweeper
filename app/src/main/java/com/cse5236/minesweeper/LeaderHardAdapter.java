@@ -13,11 +13,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
-public class LeaderSpeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class LeaderHardAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     Context mContext;
     ArrayList<Player> list;
 
-    public LeaderSpeedAdapter(Context context, ArrayList<Player> plist){
+    public LeaderHardAdapter(Context context, ArrayList<Player> plist){
         list = plist;
         mContext = context;
     }

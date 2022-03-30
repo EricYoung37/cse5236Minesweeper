@@ -11,17 +11,19 @@ import android.widget.Button;
 
 public class LeaderBoard extends AppCompatActivity {
 
-    Button leaderScoreBtn, leaderSpeedBtn;
+    Button leaderEasyBtn, leaderHardBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_leader_board);
 
-        leaderScoreBtn = findViewById(R.id.leader_score);
-        leaderSpeedBtn = findViewById(R.id.leader_speed);
+        replaceFragment(new LeaderHard()); // Default fragment for this activity
 
-        leaderScoreBtn.setOnClickListener(new View.OnClickListener() {
+        leaderEasyBtn = findViewById(R.id.leader_easy);
+        leaderHardBtn = findViewById(R.id.leader_hard);
+
+        leaderEasyBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -30,7 +32,7 @@ public class LeaderBoard extends AppCompatActivity {
             }
         });
 
-        leaderSpeedBtn.setOnClickListener(new View.OnClickListener() {
+        leaderHardBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 

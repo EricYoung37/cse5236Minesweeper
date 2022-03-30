@@ -19,9 +19,9 @@ public class LeaderHard extends Fragment {
 
     View view;
     RecyclerView recyclerView;
-    LeaderSpeedAdapter leaderSpeedAdapter;
+    LeaderHardAdapter leaderSpeedAdapter;
 //    DAOPlayer daoPlayer; // Version without VM & Repo
-    private LeaderSpeedViewModel leaderSpeedViewModel; // Version with VM & Repo
+    private LeaderHardViewModel leaderHardViewModel; // Version with VM & Repo
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -31,12 +31,12 @@ public class LeaderHard extends Fragment {
 
         /* Create ViewModel */
         // Version with VM & Repo
-        leaderSpeedViewModel = new ViewModelProvider(this).get(LeaderSpeedViewModel.class);
-        leaderSpeedViewModel.init();
+        leaderHardViewModel = new ViewModelProvider(this).get(LeaderHardViewModel.class);
+        leaderHardViewModel.init();
 
         /* Observe changes to this ViewModel */
         // Version with VM & Repo
-        leaderSpeedViewModel.getPlayers().observe(getViewLifecycleOwner(), new Observer<ArrayList<Player>>() {
+        leaderHardViewModel.getPlayers().observe(getViewLifecycleOwner(), new Observer<ArrayList<Player>>() {
             @Override
             public void onChanged(ArrayList<Player> players) {
                 leaderSpeedAdapter.notifyDataSetChanged();
@@ -44,7 +44,7 @@ public class LeaderHard extends Fragment {
         });
 
         recyclerView = view.findViewById(R.id.leaderboard_list);
-        leaderSpeedAdapter = new LeaderSpeedAdapter(getContext(), leaderSpeedViewModel.getPlayers().getValue()); // Version with VM & Repo
+        leaderSpeedAdapter = new LeaderHardAdapter(getContext(), leaderHardViewModel.getPlayers().getValue()); // Version with VM & Repo
 //        leaderSpeedAdapter = new LeaderSpeedAdapter(getContext(), new ArrayList<Player>()); // Version without VM & Repo
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(linearLayoutManager);
