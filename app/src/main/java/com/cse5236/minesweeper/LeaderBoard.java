@@ -18,7 +18,7 @@ public class LeaderBoard extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_leader_board);
 
-        replaceFragment(new LeaderHard()); // Default fragment for this activity
+        replaceFragment(new LeaderEasy()); // Default fragment for this activity
 
         leaderEasyBtn = findViewById(R.id.leader_easy);
         leaderHardBtn = findViewById(R.id.leader_hard);

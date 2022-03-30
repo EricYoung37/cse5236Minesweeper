@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -76,20 +75,26 @@ public class MainActivity extends AppCompatActivity implements OnCellClickListen
         timerText = findViewById(R.id.timer);
         timer = new Timer();
 
-        DAOPlayer dao = new DAOPlayer();
         playerName = findViewById(R.id.name);
 
         mineGridRecyclerAdapter = new MineGridRecyclerAdapter(game.getMineGrid().getCells(),this);
         gridRecyclerView.setAdapter(mineGridRecyclerAdapter);
 
-//        Log.d("MainActivity", "onCreate called!!!");
+//        Log.d("MainActivity", "onCreate called");
         startTimer();
 
         submitBtn = findViewById(R.id.submit);
         submitBtn.setOnClickListener(v-> {
             Player p = new Player(playerName.getText().toString(), timerText.getText().toString());
-            dao.submit(p);
+            if(difficulty.getDifficulty().equals("Hard")) {
+                DAOHard daoHard = new DAOHard();
+                daoHard.submit(p);
+            } else if(difficulty.getDifficulty().equals("Easy")) {
+                DAOEasy daoEasy = new DAOEasy();
+                daoEasy.submit(p);
+            }
         });
+
         flagsCount.setText(String.format("%03d", game.getNumOfBombs()-game.getFlagNum()));
     }
 
@@ -142,34 +147,34 @@ public class MainActivity extends AppCompatActivity implements OnCellClickListen
 //    protected void onDestroy()
 //    {
 //        super.onDestroy();
-//        Log.d("MainActivity", "onDestroy called!!!");
+//        Log.d("MainActivity", "onDestroy called");
 //    }
 //
 //    @Override
 //    protected void onStart()
 //    {
 //        super.onStart();
-//        Log.d("MainActivity", "onStart called!!!");
+//        Log.d("MainActivity", "onStart called");
 //    }
 //
 //    @Override
 //    protected void onResume()
 //    {
 //        super.onResume();
-//        Log.d("MainActivity", "onResume called!!!");
+//        Log.d("MainActivity", "onResume called");
 //    }
 //
 //    @Override
 //    protected void onStop()
 //    {
 //        super.onStop();
-//        Log.d("MainActivity", "onStop called!!!");
+//        Log.d("MainActivity", "onStop called");
 //    }
 //
 //    @Override
 //    protected void onPause()
 //    {
 //        super.onPause();
-//        Log.d("MainActivity", "onPause called!!!");
+//        Log.d("MainActivity", "onPause called");
 //    }
 }

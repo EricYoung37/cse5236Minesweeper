@@ -5,16 +5,16 @@ import androidx.lifecycle.ViewModel;
 
 import java.util.ArrayList;
 
-public class LeaderHardViewModel extends ViewModel {
+public class LeaderEasyViewModel extends ViewModel {
 
     private MutableLiveData<ArrayList<Player>> players;
-    private LeaderHardRepository playerRepo;
+    private LeaderEasyRepository playerRepo;
 
     public void init() {
         if(players != null) {
             return;
         }
-        playerRepo = LeaderHardRepository.getInstance(); // Repo instance
+        playerRepo = LeaderEasyRepository.getInstance(); // Repo instance
         players = playerRepo.getPlayers(); // Retrieve LiveData from the repo instance
     }
 

@@ -9,9 +9,9 @@ public class Difficulty {
              size = 5*5 | 10*10
           bombNum = 5 | 10
      */
-    private String difficulty = "Hard"; // Default
-    private int span = 10; // size = span*span
-    private int bombNum = 10;
+    private String difficulty = "Easy"; // Default
+    private int span = 5; // size = span*span
+    private int bombNum = 5;
 
     /* Singleton pattern */
     public static Difficulty getInstance() {

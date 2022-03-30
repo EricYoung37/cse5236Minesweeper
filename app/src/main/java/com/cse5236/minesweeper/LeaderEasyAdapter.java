@@ -12,11 +12,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class LeaderHardAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class LeaderEasyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     Context mContext;
     ArrayList<Player> list;
 
-    public LeaderHardAdapter(Context context, ArrayList<Player> plist){
+    public LeaderEasyAdapter(Context context, ArrayList<Player> plist){
         list = plist;
         mContext = context;
     }
@@ -50,7 +50,7 @@ public class LeaderHardAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     public class PlayerViewHolder extends RecyclerView.ViewHolder {
         TextView txtName, txtTime;
         Button deleteBtn;
-        DAOHard dao = new DAOHard();
+        DAOEasy dao = new DAOEasy();
 
         public PlayerViewHolder(@NonNull View itemView) {
             super(itemView);

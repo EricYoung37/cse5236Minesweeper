@@ -1,7 +1,5 @@
 package com.cse5236.minesweeper;
 
-import android.util.Log;
-
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 
@@ -11,24 +9,24 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class PlayerRepository {
+public class LeaderHardRepository {
 //    public String TAG = "PlayerRepository";
 
-    private static PlayerRepository instance;
+    private static LeaderHardRepository instance;
     private ArrayList<Player> dataSet = new ArrayList<>();
-    private DAOPlayer daoPlayer = new DAOPlayer();
+    private DAOHard daoHard = new DAOHard();
 
     /* Singleton Pattern */
-    public static PlayerRepository getInstance() {
+    public static LeaderHardRepository getInstance() {
         if(instance == null) {
-            instance = new PlayerRepository();
+            instance = new LeaderHardRepository();
         }
         return instance;
     }
 
     /* Retrieve remote data and put it in dataSet */
     public void setPlayers(MutableLiveData<ArrayList<Player>> data) {
-        daoPlayer.getAll().addListenerForSingleValueEvent(new ValueEventListener() {
+        daoHard.getAll().addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 /* This clear() method is used to solve the problem
