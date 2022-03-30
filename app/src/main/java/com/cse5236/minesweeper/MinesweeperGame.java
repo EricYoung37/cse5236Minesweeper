@@ -9,21 +9,32 @@ import java.util.List;
 public class MinesweeperGame {
     private MineGrid mineGrid;
     private boolean clearMode;
+    private boolean flagMode;
+    private int flagNum;
     private boolean isGameOver;
     private int score;
+    private int numOfBombs;
 
     public MinesweeperGame(int size, int numberOfBombs) {
         this.clearMode = true;
         this.isGameOver = false;
+        this.numOfBombs = numberOfBombs;
+        flagMode = false;
+        flagNum = 0;
         mineGrid = new MineGrid(size);
         mineGrid.generateGrid(numberOfBombs);
 
     }
 
     public void handleCellClick(Cell cell){
-        if(clearMode){
-            clear(cell);
+        if(!gameOver() && !isGameWon()){
+            if(clearMode){
+                clear(cell);
+            }else if(flagMode){
+                flaging(cell);
+            }
         }
+
     }
 
     public boolean isGameWon(){
@@ -74,6 +85,36 @@ public class MinesweeperGame {
           isGameOver = true;
       }
     }
+    public void flaging(Cell c){
+        if(!c.isRevealed()){
+            c.setFlagged(!c.isFlagged());
+            int count = 0;
+            for(Cell c2: getMineGrid().getCells()){
+                if(c2.isFlagged()){
+                    count++;
+                }
+            }
+            flagNum = count;
+        }
+    }
+
+    public void toggleMode(){
+        clearMode = !clearMode;
+        flagMode = !flagMode;
+    }
+
+    public boolean isFlagMode() {
+        return flagMode;
+    }
+
+    public int getFlagNum() {
+        return flagNum;
+    }
+
+    public int getNumOfBombs() {
+        return numOfBombs;
+    }
+
     public MineGrid getMineGrid() {
         return mineGrid;
     }

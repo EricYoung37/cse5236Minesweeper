@@ -9,7 +9,7 @@
     <string name="score">Score</string>
     <string name="timer">Time</string>
     <string name="submitBtn">Submit</string>
-    <string name ='playerName'>Player name</string>
+    <string name='playerName'>Player name</string>
 
     <!-- Game field/grid elements -->
     <string name="flag">🚩</string>

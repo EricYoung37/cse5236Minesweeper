@@ -55,7 +55,6 @@ public class MineGridRecyclerAdapter extends RecyclerView.Adapter<MineGridRecycl
 
         public MineTileViewHolder(@NonNull View itemView) {
             super(itemView);
-
             valueTextView = itemView.findViewById(R.id.item_cell_value);
         }
 
@@ -72,6 +71,7 @@ public class MineGridRecyclerAdapter extends RecyclerView.Adapter<MineGridRecycl
             if(cell.isRevealed()){
                 if (cell.getValue() == Cell.BOMB) {
                     valueTextView.setText(R.string.bomb);
+                    itemView.setBackgroundColor(Color.parseColor("#eb3434"));
 
                 } else if (cell.getValue() == Cell.BLANK) {
                     valueTextView.setText("");
@@ -86,7 +86,10 @@ public class MineGridRecyclerAdapter extends RecyclerView.Adapter<MineGridRecycl
                     } else if (cell.getValue() == 3) {
                         valueTextView.setTextColor(Color.RED);
                     }
+                    itemView.setBackgroundColor(Color.parseColor("#d3d3d3"));
                 }
+            }else if(cell.isFlagged()){
+                valueTextView.setText(R.string.flag);
             }
 
         }

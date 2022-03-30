@@ -10,7 +10,7 @@ import android.widget.Button;
 
 public class MainMenu extends AppCompatActivity {
 
-    private Button startGameBtn, leaderBoardBtn;
+    private Button startGameBtn, leaderBoardBtn, settingsBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +32,12 @@ public class MainMenu extends AppCompatActivity {
                 openLeaderBoard();
             }
         });
+
+        settingsBtn = (Button) findViewById(R.id.settings_btn);
+        settingsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) { openSettings(); }
+        });
     }
 
     public void startMainActivity() {
@@ -41,6 +47,11 @@ public class MainMenu extends AppCompatActivity {
 
     public void openLeaderBoard() {
         Intent intent = new Intent(this, LeaderBoard.class);
+        startActivity(intent);
+    }
+
+    public void openSettings() {
+        Intent intent = new Intent(this, SettingsActivity.class);
         startActivity(intent);
     }
 }
