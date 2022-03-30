@@ -12,7 +12,6 @@ public class MinesweeperGame {
     private boolean flagMode;
     private int flagNum;
     private boolean isGameOver;
-    private int score;
     private int numOfBombs;
 
     public MinesweeperGame(int size, int numberOfBombs) {
@@ -31,7 +30,7 @@ public class MinesweeperGame {
             if(clearMode){
                 clear(cell);
             }else if(flagMode){
-                flaging(cell);
+                flagging(cell);
             }
         }
 
@@ -85,7 +84,7 @@ public class MinesweeperGame {
           isGameOver = true;
       }
     }
-    public void flaging(Cell c){
+    public void flagging(Cell c){
         if(!c.isRevealed()){
             c.setFlagged(!c.isFlagged());
             int count = 0;

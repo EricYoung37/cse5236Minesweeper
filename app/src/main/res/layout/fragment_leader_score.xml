@@ -3,20 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/teal_200"
     tools:context=".LeaderScore">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="Leader Score"
-        android:textSize="30sp" />
-
-    <View
-        android:layout_marginTop="50dp"
-        android:layout_width="wrap_content"
-        android:layout_height="2dp"
-        android:background="#000000" />
 
 </FrameLayout>
