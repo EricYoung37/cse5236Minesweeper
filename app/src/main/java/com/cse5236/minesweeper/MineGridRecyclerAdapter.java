@@ -79,11 +79,13 @@ public class MineGridRecyclerAdapter extends RecyclerView.Adapter<MineGridRecycl
 
                 } else {
                     valueTextView.setText(String.valueOf(cell.getValue()));
-                    if (cell.getValue() == 1) {
+                    /* Use modulo so that the number can still be colored even if the value is
+                    large. For example, even the number is 5, then the color will be GREEN. */
+                    if ((cell.getValue() % 3) == 1) {
                         valueTextView.setTextColor(Color.BLUE);
-                    } else if (cell.getValue() == 2) {
+                    } else if ((cell.getValue() % 3) == 2) {
                         valueTextView.setTextColor(Color.GREEN);
-                    } else if (cell.getValue() == 3) {
+                    } else {
                         valueTextView.setTextColor(Color.RED);
                     }
                     itemView.setBackgroundColor(Color.parseColor("#d3d3d3"));

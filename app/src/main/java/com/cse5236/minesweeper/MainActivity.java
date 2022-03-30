@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.util.Log;
 import android.view.View;
@@ -24,7 +25,6 @@ public class MainActivity extends AppCompatActivity implements OnCellClickListen
     //game
     MinesweeperGame game;
     //UI
-    TextView scoreBoard;
     TextView timerText;
     TextView flag,flagsCount;
     EditText playerName;
@@ -35,7 +35,6 @@ public class MainActivity extends AppCompatActivity implements OnCellClickListen
 
     Difficulty difficulty;
 
-    int score;
     int count;
 
     @Override
@@ -50,10 +49,11 @@ public class MainActivity extends AppCompatActivity implements OnCellClickListen
 //        game = new MinesweeperGame(10, 10);
         gridRecyclerView.setLayoutManager(new GridLayoutManager(this, difficulty.getSize()));
         game = new MinesweeperGame(difficulty.getSize(), difficulty.getBombNum());
-        score = 0;
         count = 0;
+
         flag  = (TextView)findViewById(R.id.activity_main_flag);
         flagsCount  = (TextView)findViewById(R.id.activity_main_flagsleft);
+
         flag.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -61,10 +61,11 @@ public class MainActivity extends AppCompatActivity implements OnCellClickListen
                 if(game.isFlagMode()){
                     GradientDrawable border = new GradientDrawable();
                     border.setColor(0xFFFFFFFF);
-                    border.setStroke(1,0xFF000000);
+                    border.setStroke(10, Color.parseColor("#bab3dc"));
                     flag.setBackground(border);
 
-                }else{
+                }
+                else{
                     GradientDrawable border = new GradientDrawable();
                     border.setColor(0xFFFFFFFF);
                     flag.setBackground(border);
@@ -72,7 +73,6 @@ public class MainActivity extends AppCompatActivity implements OnCellClickListen
             }
         });
 
-       // scoreBoard = findViewById(R.id.score);
         timerText = findViewById(R.id.timer);
         timer = new Timer();
 
@@ -95,13 +95,6 @@ public class MainActivity extends AppCompatActivity implements OnCellClickListen
 
     @Override
     public void cellClick(Cell cell) {
-
-//        count++;
-//        if(count == 3){
-//            score++;
-//            scoreBoard.setText(String.format("%s","        " + score));
-//            count = 0;
-//        }
 
         game.handleCellClick(cell);
         flagsCount.setText(String.format("%03d", game.getNumOfBombs()-game.getFlagNum()));
