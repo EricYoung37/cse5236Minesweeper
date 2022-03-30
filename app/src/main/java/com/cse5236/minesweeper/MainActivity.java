@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.graphics.drawable.GradientDrawable;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -24,6 +26,7 @@ public class MainActivity extends AppCompatActivity implements OnCellClickListen
     //UI
     TextView scoreBoard;
     TextView timerText;
+    TextView flag,flagsCount;
     EditText playerName;
     Timer timer;
     TimerTask timerTask;
@@ -49,8 +52,27 @@ public class MainActivity extends AppCompatActivity implements OnCellClickListen
         game = new MinesweeperGame(difficulty.getSize(), difficulty.getBombNum());
         score = 0;
         count = 0;
+        flag  = (TextView)findViewById(R.id.activity_main_flag);
+        flagsCount  = (TextView)findViewById(R.id.activity_main_flagsleft);
+        flag.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                game.toggleMode();
+                if(game.isFlagMode()){
+                    GradientDrawable border = new GradientDrawable();
+                    border.setColor(0xFFFFFFFF);
+                    border.setStroke(1,0xFF000000);
+                    flag.setBackground(border);
 
-        scoreBoard = findViewById(R.id.score);
+                }else{
+                    GradientDrawable border = new GradientDrawable();
+                    border.setColor(0xFFFFFFFF);
+                    flag.setBackground(border);
+                }
+            }
+        });
+
+       // scoreBoard = findViewById(R.id.score);
         timerText = findViewById(R.id.timer);
         timer = new Timer();
 
@@ -68,18 +90,21 @@ public class MainActivity extends AppCompatActivity implements OnCellClickListen
             Player p = new Player(playerName.getText().toString(), timerText.getText().toString());
             dao.submit(p);
         });
+        flagsCount.setText(String.format("%03d", game.getNumOfBombs()-game.getFlagNum()));
     }
 
     @Override
     public void cellClick(Cell cell) {
-        count++;
-        if(count == 3){
-            score++;
-            scoreBoard.setText(String.format("%s","        " + score));
-            count = 0;
-        }
-        game.handleCellClick(cell);
 
+//        count++;
+//        if(count == 3){
+//            score++;
+//            scoreBoard.setText(String.format("%s","        " + score));
+//            count = 0;
+//        }
+
+        game.handleCellClick(cell);
+        flagsCount.setText(String.format("%03d", game.getNumOfBombs()-game.getFlagNum()));
         if(game.gameOver()){
             Toast.makeText(getApplicationContext(),"Game Over",Toast.LENGTH_SHORT).show();
             game.getMineGrid().revealAllBombs();
