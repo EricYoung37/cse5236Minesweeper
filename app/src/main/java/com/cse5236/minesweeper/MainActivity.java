@@ -55,14 +55,14 @@ public class MainActivity extends AppCompatActivity implements OnCellClickListen
                 game.toggleMode();
                 if(game.isFlagMode()){
                     GradientDrawable border = new GradientDrawable();
-                    border.setColor(0xFFFFFFFF);
-                    border.setStroke(10, Color.parseColor("#6a0dad"));
+                    border.setColor(0x4df9cd08); // 66 for opacity
+                    // border.setStroke(2, Color.parseColor("#4df9cd08"));
                     flag.setBackground(border);
 
                 }
                 else{
                     GradientDrawable border = new GradientDrawable();
-                    border.setColor(0xFFFFFFFF);
+                    border.setColor(0xffffffff);
                     flag.setBackground(border);
                 }
             }
@@ -93,7 +93,7 @@ public class MainActivity extends AppCompatActivity implements OnCellClickListen
             // reset flag count
             flagsCount.setText(String.format("%03d", game.getNumOfBombs()-game.getFlagNum()));
             GradientDrawable border = new GradientDrawable();
-            border.setColor(0xFFFFFFFF);
+            border.setColor(0xffffffff);
             flag.setBackground(border);
 
 
