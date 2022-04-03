@@ -18,7 +18,9 @@ import android.widget.Toast;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class MainActivity extends AppCompatActivity implements OnCellClickListener {
+public class MainActivity extends AppCompatActivity implements OnCellClickListener, SubmitFragment.DialogListener {
+    //database
+    DAOPlayer dao = new DAOPlayer();
     //recycler
     RecyclerView gridRecyclerView;
     MineGridRecyclerAdapter mineGridRecyclerAdapter;
@@ -27,11 +29,11 @@ public class MainActivity extends AppCompatActivity implements OnCellClickListen
     //UI
     TextView timerText;
     TextView flag,flagsCount;
-    EditText playerName;
     Timer timer;
     TimerTask timerTask;
     Double time = 0.0;
-    Button submitBtn;
+    //Button submitBtn;
+    Button restartBtn;
 
     Difficulty difficulty;
 
@@ -76,21 +78,37 @@ public class MainActivity extends AppCompatActivity implements OnCellClickListen
         timerText = findViewById(R.id.timer);
         timer = new Timer();
 
-        DAOPlayer dao = new DAOPlayer();
-        playerName = findViewById(R.id.name);
-
         mineGridRecyclerAdapter = new MineGridRecyclerAdapter(game.getMineGrid().getCells(),this);
         gridRecyclerView.setAdapter(mineGridRecyclerAdapter);
 
 //        Log.d("MainActivity", "onCreate called!!!");
         startTimer();
-
-        submitBtn = findViewById(R.id.submit);
-        submitBtn.setOnClickListener(v-> {
-            Player p = new Player(playerName.getText().toString(), timerText.getText().toString());
-            dao.submit(p);
-        });
         flagsCount.setText(String.format("%03d", game.getNumOfBombs()-game.getFlagNum()));
+
+        restartBtn = findViewById(R.id.restart);
+        restartBtn.setOnClickListener(v -> {
+            //new game
+            game = new MinesweeperGame(difficulty.getSize(), difficulty.getBombNum());
+
+            //reset timer
+            timer.cancel();
+            timer = new Timer();
+            time = 0.0;
+            startTimer();
+
+            //reset flag count
+            flagsCount.setText(String.format("%03d", game.getNumOfBombs()-game.getFlagNum()));
+
+            //view game
+            mineGridRecyclerAdapter = new MineGridRecyclerAdapter(game.getMineGrid().getCells(),this);
+            gridRecyclerView.setAdapter(mineGridRecyclerAdapter);
+        });
+
+//        submitBtn = findViewById(R.id.submit);
+//        submitBtn.setOnClickListener(v-> {
+//            Player p = new Player(playerName.getText().toString(), timerText.getText().toString());
+//            dao.submit(p);
+//        });
     }
 
     @Override
@@ -107,7 +125,7 @@ public class MainActivity extends AppCompatActivity implements OnCellClickListen
             Toast.makeText(getApplicationContext(),"Game Won",Toast.LENGTH_SHORT).show();
             game.getMineGrid().revealAllBombs();
             timerTask.cancel();
-
+            openDialog();
         }
         mineGridRecyclerAdapter.setCells(game.getMineGrid().getCells());
     }
@@ -119,8 +137,8 @@ public class MainActivity extends AppCompatActivity implements OnCellClickListen
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        time++;
                         timerText.setText(getTimerText());
+                        time++;
                     }
                 });
 
@@ -136,6 +154,20 @@ public class MainActivity extends AppCompatActivity implements OnCellClickListen
         int minutes =   ((round % 86400) % 3600) / 60;
 
         return String.format("%02d", minutes) + " : " + String.format("%02d", seconds);
+    }
+
+    public void openDialog() {
+        SubmitFragment submitFragment = new SubmitFragment();
+        submitFragment.show(getSupportFragmentManager(), "Submit Fragment");
+    }
+
+    @Override
+    public void applyPlayerName(String PlayerName) {
+        // If player's name isn't empty, send it to database
+        if(!PlayerName.equals("")) {
+            Player p = new Player(PlayerName, timerText.getText().toString());
+            dao.submit(p);
+        }
     }
 
 //    @Override
