@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity implements OnCellClickListen
         timerText = findViewById(R.id.timer);
         timer = new Timer();
 
-        mineGridRecyclerAdapter = new MineGridRecyclerAdapter(game.getMineGrid().getCells(),this);
+        mineGridRecyclerAdapter = new MineGridRecyclerAdapter(game.getMineGrid().getCells(),this, game);
         gridRecyclerView.setAdapter(mineGridRecyclerAdapter);
 
 //        Log.d("MainActivity", "onCreate called");
@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity implements OnCellClickListen
             flagsCount.setText(String.format("%03d", game.getNumOfBombs()-game.getFlagNum()));
 
             // view game
-            mineGridRecyclerAdapter = new MineGridRecyclerAdapter(game.getMineGrid().getCells(),this);
+            mineGridRecyclerAdapter = new MineGridRecyclerAdapter(game.getMineGrid().getCells(),this, game);
             gridRecyclerView.setAdapter(mineGridRecyclerAdapter);
         });
 

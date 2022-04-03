@@ -16,11 +16,13 @@ import java.util.List;
 public class MineGridRecyclerAdapter extends RecyclerView.Adapter<MineGridRecyclerAdapter.MineTileViewHolder> {
     private List<Cell> cells; /* Each spot in the list will be bound to the view of a cell by the Adapter/ViewHolder */
     private OnCellClickListener listener;
+    private MinesweeperGame game;
 
     /* RecyclerView Adapter Constructor */
-    public MineGridRecyclerAdapter(List<Cell> cells, OnCellClickListener listener) {
+    public MineGridRecyclerAdapter(List<Cell> cells, OnCellClickListener listener, MinesweeperGame game) {
         this.cells = cells;
         this.listener = listener;
+        this.game = game;
     }
 
     @NonNull /* Means never return null */
@@ -64,14 +66,23 @@ public class MineGridRecyclerAdapter extends RecyclerView.Adapter<MineGridRecycl
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    listener.cellClick(cell);
+                    if(!(cell.isFlagged() && !(game.isFlagMode()))) {
+                        /* In the mode for opening cells, clicking a flagged cell is not allowed. */
+                        listener.cellClick(cell);
+                    }
                 }
             });
 
             if(cell.isRevealed()){
                 if (cell.getValue() == Cell.BOMB) {
                     valueTextView.setText(R.string.bomb);
-                    itemView.setBackgroundColor(Color.parseColor("#eb3434"));
+                    if(game.isGameWon()) {
+                        /* The background color for bombs revealed upon game victory. */
+                        itemView.setBackgroundColor(Color.GRAY);
+                    } else {
+                        /* The background color for bombs revealed upon game failure. */
+                        itemView.setBackgroundColor(Color.parseColor("#eb3434"));
+                    }
 
                 } else if (cell.getValue() == Cell.BLANK) {
                     valueTextView.setText("");

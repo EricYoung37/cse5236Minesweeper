@@ -78,6 +78,10 @@ public class MinesweeperGame {
 
             for (Cell c: toClear) {
                 c.setRevealed(true);
+                if(c.isFlagged()) {
+                    /* Reclaim a flag upon revealing a flagged safe cell */
+                    flagNum--;
+                }
             }
         }
       else if (cell.getValue() == Cell.BOMB) {
@@ -87,6 +91,8 @@ public class MinesweeperGame {
     public void flagging(Cell c){
         if(!c.isRevealed()){
             c.setFlagged(!c.isFlagged());
+
+            /* Count flags in use so that the flag screen can display correctly. */
             int count = 0;
             for(Cell c2: getMineGrid().getCells()){
                 if(c2.isFlagged()){
