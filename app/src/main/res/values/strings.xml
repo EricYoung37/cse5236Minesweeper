@@ -8,7 +8,7 @@
     <!-- Digit panel elements -->
     <string name="score">Score</string>
     <string name="timer">Time</string>
-    <string name="submitBtn">Submit</string>
+    <string name="restartBtn">Restart?</string>
     <string name='playerName'>Player name</string>
 
     <!-- Game field/grid elements -->

@@ -4,6 +4,11 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/16263/Desktop/CSE 5236project/app/src/main/res/layout/activity_main.xml" value="0.4125" />
+        <entry key="..\:/cse5236MinesweeperCP4/app/src/main/res/layout/activity_leader_board.xml" value="0.36614583333333334" />
+        <entry key="..\:/cse5236MinesweeperCP4/app/src/main/res/layout/activity_main.xml" value="0.2368659420289855" />
+        <entry key="..\:/cse5236MinesweeperCP4/app/src/main/res/layout/fragment_game_submit.xml" value="0.36614583333333334" />
+        <entry key="..\:/cse5236MinesweeperCP4/app/src/main/res/layout/fragment_leader_easy.xml" value="0.36614583333333334" />
+        <entry key="..\:/cse5236MinesweeperCP4/app/src/main/res/layout/fragment_leader_hard.xml" value="0.36614583333333334" />
         <entry key="..\:/cse5236workspace/Minesweeper/app/src/main/res/drawable/ic_baseline_brightness_6_24.xml" value="0.2703125" />
         <entry key="..\:/cse5236workspace/Minesweeper/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2703125" />
         <entry key="..\:/cse5236workspace/Minesweeper/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.1" />
