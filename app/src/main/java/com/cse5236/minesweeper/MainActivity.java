@@ -92,6 +92,10 @@ public class MainActivity extends AppCompatActivity implements OnCellClickListen
 
             // reset flag count
             flagsCount.setText(String.format("%03d", game.getNumOfBombs()-game.getFlagNum()));
+            GradientDrawable border = new GradientDrawable();
+            border.setColor(0xFFFFFFFF);
+            flag.setBackground(border);
+
 
             // view game
             mineGridRecyclerAdapter = new MineGridRecyclerAdapter(game.getMineGrid().getCells(),this, game);
