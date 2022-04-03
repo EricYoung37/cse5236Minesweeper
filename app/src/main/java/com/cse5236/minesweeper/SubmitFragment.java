@@ -22,7 +22,7 @@ public class SubmitFragment extends DialogFragment {
         LayoutInflater inflater = getActivity().getLayoutInflater();
         View view = inflater.inflate(R.layout.fragment_game_submit, null);
 
-        builder.setView(view).setTitle("Congratulations!").setNegativeButton("Cancel", (dialogInterface, i) -> {
+        builder.setView(view).setTitle("Succeeded!").setNegativeButton("Cancel", (dialogInterface, i) -> {
             //quit
         }).setPositiveButton("Submit", (dialogInterface, i) -> {
             String playerName = editName.getText().toString();

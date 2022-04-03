@@ -17,18 +17,17 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity implements OnCellClickListener, SubmitFragment.DialogListener {
-    //recycler
+    // RecyclerView
     RecyclerView gridRecyclerView;
     MineGridRecyclerAdapter mineGridRecyclerAdapter;
-    //game
+    // game
     MinesweeperGame game;
-    //UI
+    // UI
     TextView timerText;
     TextView flag,flagsCount;
     Timer timer;
     TimerTask timerTask;
     Double time = 0.0;
-    //Button submitBtn; // March 30
     Button restartBtn;
 
     Difficulty difficulty;
@@ -43,8 +42,6 @@ public class MainActivity extends AppCompatActivity implements OnCellClickListen
         difficulty = Difficulty.getInstance();
 
         gridRecyclerView = findViewById(R.id.activity_main_grid);
-//        gridRecyclerView.setLayoutManager(new GridLayoutManager(this, 10)); // spanCount: number of column/row
-//        game = new MinesweeperGame(10, 10);
         gridRecyclerView.setLayoutManager(new GridLayoutManager(this, difficulty.getSize()));
         game = new MinesweeperGame(difficulty.getSize(), difficulty.getBombNum());
         count = 0;
@@ -100,6 +97,7 @@ public class MainActivity extends AppCompatActivity implements OnCellClickListen
             mineGridRecyclerAdapter = new MineGridRecyclerAdapter(game.getMineGrid().getCells(),this);
             gridRecyclerView.setAdapter(mineGridRecyclerAdapter);
         });
+
     }
 
     @Override
