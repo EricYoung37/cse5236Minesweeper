@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity implements OnCellClickListen
                 if(game.isFlagMode()){
                     GradientDrawable border = new GradientDrawable();
                     border.setColor(0xFFFFFFFF);
-                    border.setStroke(10, Color.parseColor("#bab3dc"));
+                    border.setStroke(10, Color.parseColor("#6a0dad"));
                     flag.setBackground(border);
 
                 }
