@@ -81,7 +81,10 @@ public class MinesweeperGame {
                 if(c.isFlagged()) {
                     /* Reclaim a flag upon revealing a flagged safe cell */
                     flagNum--;
-                    c.setFlagged(!c.isFlagged());
+                    c.setFlagged(false); // This line is important.
+                    /* Even if the revealed cell is not important to the game, its flag state
+                    * will be tracked in the for loop of the method flagging(). Therefore, the
+                    * flag state of a revealed cell must also be set properly. */
                 }
             }
         }
@@ -90,9 +93,13 @@ public class MinesweeperGame {
       }
     }
     public void flagging(Cell c){
-        //set the flagged to unflagged if not yet reach the numOfBombs
-        if(!c.isRevealed()&& flagNum < numOfBombs){
-            c.setFlagged(!c.isFlagged());
+        if(!c.isRevealed()){
+            /* Prevent flagging if the number of used flags equals the number of bombs. */
+            if((flagNum<numOfBombs) && !c.isFlagged()) {
+                c.setFlagged(true);
+            } else if(c.isFlagged()) {
+                c.setFlagged(false);
+            }
 
             /* Count flags in use so that the flag screen can display correctly. */
             int count = 0;
@@ -102,9 +109,6 @@ public class MinesweeperGame {
                 }
             }
             flagNum = count;
-        }else if(c.isFlagged() && flagNum == numOfBombs){//set the flagged to unflagged if reach the numOfBombs
-            c.setFlagged(!c.isFlagged());
-            flagNum--;
         }
     }
 
@@ -118,8 +122,6 @@ public class MinesweeperGame {
     }
 
     public int getFlagNum() {
-        if(flagNum <= numOfBombs) return flagNum;
-        else{flagNum = numOfBombs;}
         return flagNum;
     }
 
