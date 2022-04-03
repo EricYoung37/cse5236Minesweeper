@@ -81,6 +81,7 @@ public class MinesweeperGame {
                 if(c.isFlagged()) {
                     /* Reclaim a flag upon revealing a flagged safe cell */
                     flagNum--;
+                    c.setFlagged(!c.isFlagged());
                 }
             }
         }
@@ -89,7 +90,8 @@ public class MinesweeperGame {
       }
     }
     public void flagging(Cell c){
-        if(!c.isRevealed()){
+        //set the flagged to unflagged if not yet reach the numOfBombs
+        if(!c.isRevealed()&& flagNum < numOfBombs){
             c.setFlagged(!c.isFlagged());
 
             /* Count flags in use so that the flag screen can display correctly. */
@@ -100,6 +102,9 @@ public class MinesweeperGame {
                 }
             }
             flagNum = count;
+        }else if(c.isFlagged() && flagNum == numOfBombs){//set the flagged to unflagged if reach the numOfBombs
+            c.setFlagged(!c.isFlagged());
+            flagNum--;
         }
     }
 
@@ -113,6 +118,8 @@ public class MinesweeperGame {
     }
 
     public int getFlagNum() {
+        if(flagNum <= numOfBombs) return flagNum;
+        else{flagNum = numOfBombs;}
         return flagNum;
     }
 
