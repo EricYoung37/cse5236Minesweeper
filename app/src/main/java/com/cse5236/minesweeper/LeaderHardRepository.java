@@ -61,8 +61,8 @@ public class LeaderHardRepository {
         MutableLiveData<ArrayList<Player>> data = new MutableLiveData<>();
 
         setPlayers(data);
-        /* data.setValue(dataSet) is called again to solve counter the concurrency problem caused
-        * by the asynchronous Firebase query.
+        /* data.setValue(dataSet) is called again to counter the concurrency problem caused by
+        * the asynchronous Firebase query.
         * The Firebase query is slower than the main thread. Even if data has been set with
         * dataSet in onDataChange, it is not returned by the time the getItemsCount is called
         * in the RecyclerView adapter. This means getItemCount sees a null data, while the value

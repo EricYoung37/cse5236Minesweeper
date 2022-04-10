@@ -53,18 +53,16 @@ public class MainActivity extends AppCompatActivity implements OnCellClickListen
             @Override
             public void onClick(View view) {
                 game.toggleMode();
-                if(game.isFlagMode()){
-                    GradientDrawable border = new GradientDrawable();
-                    border.setColor(0x4df9cd08); // 66 for opacity
-                    // border.setStroke(2, Color.parseColor("#4df9cd08"));
-                    flag.setBackground(border);
 
+                GradientDrawable border = new GradientDrawable();
+                if(game.isFlagMode()){
+                    border.setColor(0x4df9cd08); // 4d for opacity
+                    // border.setStroke(2, Color.parseColor("#4df9cd08"));
                 }
                 else{
-                    GradientDrawable border = new GradientDrawable();
                     border.setColor(0xffffffff);
-                    flag.setBackground(border);
                 }
+                flag.setBackground(border);
             }
         });
 
