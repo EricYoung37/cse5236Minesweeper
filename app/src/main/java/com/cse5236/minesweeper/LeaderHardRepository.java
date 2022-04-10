@@ -65,7 +65,7 @@ public class LeaderHardRepository {
         * the asynchronous Firebase query.
         * The Firebase query is slower than the main thread. Even if data has been set with
         * dataSet in onDataChange, it is not returned by the time the getItemsCount is called
-        * in the RecyclerView adapter. This means getItemCount sees a null data, while the value
+        * in the RecyclerView adapter. This means data appears null to getItemCount, while the value
         * is still on its way. Therefore, to synchronize the size of the data set, setValue has
         * to be called again on data.
         * I know this might not be a good approach, but I could not find any other solution
