@@ -4,12 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".DifficultyActivity">
+    tools:context=".ThemeActivity">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Change Difficulty"
+        android:text="Change Theme"
         android:textSize="30dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="50dp"/>
@@ -17,17 +17,19 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Easy"
+        android:text="Default Theme"
+        android:textSize="12dp"
         android:layout_marginTop="60dp"
         android:layout_gravity="center_horizontal"
-        android:id="@+id/easy_btn"/>
+        android:id="@+id/default_theme_btn"/>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hard"
+        android:text="Dark Theme"
+        android:textSize="12dp"
         android:layout_marginTop="20dp"
         android:layout_gravity="center_horizontal"
-        android:id="@+id/hard_btn"/>
+        android:id="@+id/dark_theme_btn"/>
 
 </LinearLayout>

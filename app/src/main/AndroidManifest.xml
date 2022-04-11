@@ -11,6 +11,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Minesweeper">
         <activity
+            android:name=".ThemeActivity"
+            android:exported="false" />
+        <activity
             android:name=".DifficultyActivity"
             android:exported="false" />
         <activity

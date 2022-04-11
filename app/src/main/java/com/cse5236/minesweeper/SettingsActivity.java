@@ -9,7 +9,7 @@ import android.widget.Button;
 
 public class SettingsActivity extends AppCompatActivity {
 
-    private Button changeDifficulty;
+    private Button changeDifficulty, changeTheme;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,10 +23,23 @@ public class SettingsActivity extends AppCompatActivity {
                 configureDifficulty();
             }
         });
+
+        changeTheme = (Button) findViewById(R.id.theme_btn);
+        changeTheme.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                configureTheme();
+            }
+        });
     }
 
     public void configureDifficulty() {
         Intent intent = new Intent(this, DifficultyActivity.class);
+        startActivity(intent);
+    }
+
+    public void configureTheme() {
+        Intent intent = new Intent(this, ThemeActivity.class);
         startActivity(intent);
     }
 }
