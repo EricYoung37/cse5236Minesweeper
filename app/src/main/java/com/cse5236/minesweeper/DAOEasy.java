@@ -21,7 +21,7 @@ public class DAOEasy {
 
     /* Create or Update a record depending on the existence of the player name */
     public void submit(Player p) {
-
+        easyTable.keepSynced(true);
         /* orderByChild("name") only means you get a copy of data ordered by name but not ordering the original data */
         easyTable.orderByChild("name").equalTo(p.getName()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -44,18 +44,18 @@ public class DAOEasy {
 
             }
         });
-
+        easyTable.keepSynced(false);
     }
 
     public void delete(Player p) {
-
+        easyTable.keepSynced(true);
         /* orderByChild("name") only means you get a copy of data ordered by name but not ordering the original data */
         easyTable.orderByChild("name").equalTo(p.getName()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                 if (snapshot.exists()) {
-                    /* If name exists, update */
+                    /* If name exists, delete */
                     for (DataSnapshot child : snapshot.getChildren()) {
                         String key = child.getKey();
                         easyTable.child(key).removeValue();
@@ -68,6 +68,7 @@ public class DAOEasy {
 
             }
         });
+        easyTable.keepSynced(false);
     }
 
     /* Read all */
