@@ -59,6 +59,11 @@ public class MainActivity extends AppCompatActivity implements OnCellClickListen
 
         flag = (TextView) findViewById(R.id.activity_main_flag);
         flagsCount = (TextView) findViewById(R.id.activity_main_flagsleft);
+        if(game.isFlagMode()) {
+            GradientDrawable border = new GradientDrawable();
+            border.setColor(0x4df9cd08);
+            flag.setBackground(border);
+        }
 
         flag.setOnClickListener(new View.OnClickListener() {
             @Override
