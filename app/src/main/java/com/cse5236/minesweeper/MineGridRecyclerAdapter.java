@@ -81,12 +81,12 @@ public class MineGridRecyclerAdapter extends RecyclerView.Adapter<MineGridRecycl
                         itemView.setBackgroundColor(Color.GRAY);
                     } else {
                         /* The background color for bombs revealed upon game failure. */
-                        itemView.setBackgroundColor(Color.parseColor("#eb3434"));
+                        itemView.setBackgroundColor(0xffeb3434);
                     }
 
                 } else if (cell.getValue() == Cell.BLANK) {
                     valueTextView.setText("");
-                    itemView.setBackgroundColor(Color.parseColor("#d3d3d3"));
+                    itemView.setBackgroundColor(0xffd3d3d3);
 
                 } else {
                     valueTextView.setText(String.valueOf(cell.getValue()));
@@ -99,7 +99,7 @@ public class MineGridRecyclerAdapter extends RecyclerView.Adapter<MineGridRecycl
                     } else {
                         valueTextView.setTextColor(Color.RED);
                     }
-                    itemView.setBackgroundColor(Color.parseColor("#d3d3d3"));
+                    itemView.setBackgroundColor(0xffd3d3d3);
                 }
             }else if(cell.isFlagged()){
                 valueTextView.setText(R.string.flag);

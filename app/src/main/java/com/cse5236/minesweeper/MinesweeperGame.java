@@ -1,9 +1,5 @@
 package com.cse5236.minesweeper;
 
-import android.util.Log;
-
-import androidx.lifecycle.ViewModel;
-
 import java.util.ArrayList;
 import java.util.List;
 
