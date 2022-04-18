@@ -1,9 +1,11 @@
 package com.cse5236.minesweeper;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.SharedPreferences;
 import android.graphics.drawable.GradientDrawable;
 import android.view.View;
 import android.widget.Button;
@@ -26,17 +28,22 @@ public class MainActivity extends AppCompatActivity implements OnCellClickListen
     TextView flag,flagsCount;
     Timer timer;
     TimerTask timerTask;
-    Double time = 0.0;
+    Double time;
     Button restartBtn;
+    Boolean continueTimer;
 
     Difficulty difficulty;
+    SharedPreferences sharedPreferences;
 
     int count;
+
+    MainActivityViewModel mainActivityViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mainActivityViewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
 
         difficulty = Difficulty.getInstance();
 
@@ -45,8 +52,16 @@ public class MainActivity extends AppCompatActivity implements OnCellClickListen
         game = new MinesweeperGame(difficulty.getSize(), difficulty.getBombNum());
         count = 0;
 
-        flag  = (TextView)findViewById(R.id.activity_main_flag);
-        flagsCount  = (TextView)findViewById(R.id.activity_main_flagsleft);
+        if (!mainActivityViewModel.savedGameIsEmpty())
+            game = mainActivityViewModel.getCurrentGame();
+
+        flag = (TextView) findViewById(R.id.activity_main_flag);
+        flagsCount = (TextView) findViewById(R.id.activity_main_flagsleft);
+        if(game.isFlagMode()) {
+            GradientDrawable border = new GradientDrawable();
+            border.setColor(0x4df9cd08);
+            flag.setBackground(border);
+        }
 
         flag.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,7 +69,7 @@ public class MainActivity extends AppCompatActivity implements OnCellClickListen
                 game.toggleMode();
 
                 GradientDrawable border = new GradientDrawable();
-                if(game.isFlagMode()){
+                if (game.isFlagMode()) {
                     border.setColor(0x4df9cd08); // 4d for opacity
                     // border.setStroke(2, Color.parseColor("#4df9cd08")); // Border width
                 }
@@ -64,12 +79,16 @@ public class MainActivity extends AppCompatActivity implements OnCellClickListen
 
         timerText = findViewById(R.id.timer);
         timer = new Timer();
+        continueTimer = true;
 
-        mineGridRecyclerAdapter = new MineGridRecyclerAdapter(game.getMineGrid().getCells(),this, game);
+        mineGridRecyclerAdapter = new MineGridRecyclerAdapter(game.getMineGrid().getCells(), this, game);
         gridRecyclerView.setAdapter(mineGridRecyclerAdapter);
 
 //        Log.d("MainActivity", "onCreate called");
+        if(game.gameOver())
+            continueTimer = false;
         startTimer();
+
         flagsCount.setText(String.format("%03d", game.getNumOfBombs()-game.getFlagNum()));
 
         // Restart button
@@ -77,11 +96,15 @@ public class MainActivity extends AppCompatActivity implements OnCellClickListen
         restartBtn.setOnClickListener(v -> {
             // new game
             game = new MinesweeperGame(difficulty.getSize(), difficulty.getBombNum());
+            mainActivityViewModel.saveGame(game);
 
             // reset timer
             timer.cancel();
+            timerTask.cancel();
             timer = new Timer();
             time = 0.0;
+            continueTimer = true;
+            mainActivityViewModel.saveTime(0.0);
             startTimer();
 
             // reset flag count
@@ -95,6 +118,7 @@ public class MainActivity extends AppCompatActivity implements OnCellClickListen
             gridRecyclerView.setAdapter(mineGridRecyclerAdapter);
         });
 
+        mainActivityViewModel.saveGame(game);
     }
 
     @Override
@@ -117,6 +141,8 @@ public class MainActivity extends AppCompatActivity implements OnCellClickListen
     }
 
     public void startTimer(){
+        time = mainActivityViewModel.getTime();
+
         timerTask = new TimerTask() {
             @Override
             public void run() {
@@ -125,12 +151,18 @@ public class MainActivity extends AppCompatActivity implements OnCellClickListen
                     public void run() {
                         timerText.setText(getTimerText());
                         time++;
+                        mainActivityViewModel.saveTime(time);
                     }
                 });
-
             }
         };
-        timer.scheduleAtFixedRate(timerTask,0,1000);
+        if(!continueTimer) {
+            time--;
+            timerText.setText(getTimerText());
+            timerTask.cancel();
+        }
+        else
+            timer.scheduleAtFixedRate(timerTask,0,1000);
 
     }
 
@@ -162,12 +194,14 @@ public class MainActivity extends AppCompatActivity implements OnCellClickListen
         }
     }
 
-//    @Override
-//    protected void onDestroy()
-//    {
-//        super.onDestroy();
-//        Log.d("MainActivity", "onDestroy called");
-//    }
+    @Override
+    protected void onDestroy()
+    {
+        super.onDestroy();
+        timer.cancel();
+        timerTask.cancel();
+        //Log.d("MainActivity", "onDestroy called");
+    }
 //
 //    @Override
 //    protected void onStart()
