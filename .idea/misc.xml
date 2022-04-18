@@ -5,8 +5,12 @@
       <map>
         <entry key="..\:/Users/16263/Desktop/CSE 5236project/app/src/main/res/layout/activity_main.xml" value="0.4125" />
         <entry key="..\:/cse5236Minesweeper_TB5/app/src/main/res/layout-land/activity_main.xml" value="0.23412698412698413" />
+        <entry key="..\:/cse5236Minesweeper_TB5/app/src/main/res/layout-land/fragment_leader_easy.xml" value="0.17328042328042328" />
+        <entry key="..\:/cse5236Minesweeper_TB5/app/src/main/res/layout-land/fragment_leader_hard.xml" value="0.17328042328042328" />
         <entry key="..\:/cse5236Minesweeper_TB5/app/src/main/res/layout/activity_difficulty.xml" value="0.2765625" />
         <entry key="..\:/cse5236Minesweeper_TB5/app/src/main/res/layout/activity_main.xml" value="0.2765625" />
+        <entry key="..\:/cse5236Minesweeper_TB5/app/src/main/res/layout/fragment_leader_easy.xml" value="0.2046875" />
+        <entry key="..\:/cse5236Minesweeper_TB5/app/src/main/res/layout/fragment_leader_hard.xml" value="0.2046875" />
         <entry key="..\:/cse5236workspace/Minesweeper/app/src/main/res/drawable/ic_baseline_brightness_6_24.xml" value="0.2703125" />
         <entry key="..\:/cse5236workspace/Minesweeper/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2703125" />
         <entry key="..\:/cse5236workspace/Minesweeper/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.1" />
